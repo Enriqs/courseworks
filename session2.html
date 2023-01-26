@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1></h1>
+    <h1></h1>
+</body>
+<script>
+    let test = "racecar";
+                // 0123456
+    // let h1s = document.getElementsByTagName("h1");
+    // h1s[0].innerHTML=test;
+
+    // for (let ch of test){
+    //     // console.log(ch);
+    // };
+    console.log(test);
+        const pali = (str)=>{
+        let x=0;
+        //   for((idx=6);(specify condition to stop loop´(idx>=0));(idx=idx+));
+        for(let idx = str.length-1 ; idx>=0;idx--){
+            // console.log(idx);
+            //console.log(str[x]);
+            if (str[idx]==str[x]){
+                x++;
+
+            }else{
+                console.log(x);
+                x=0;
+                break;
+            }
+        };
+        if (x==0){
+            console.log('they are not palindrome')
+        }else{
+            console.log('they are palindrome')
+        }
+    }
+
+    pali(test);
+
+    // const compare = (a,b)=>{
+    //     let alice=0;
+    //     let bob=0;
+    //     for (let x=0; x<3; x++){
+    //         if (a[x]>b[x]){
+    //             alice++;
+    //         }else if (a[x]>b[x]){
+    //             bob++;
+    //         }
+    //     }
+    //     if (alice>bob){
+    //         let y= alice-bob;
+    //         console.log("Alice got "+ alice + " points and Bob " + bob + " points, with a difference of: " + y + " points");
+    //     }else{
+    //         let y= bob-alice;
+    //         console.log("Alice got "+ alice + " points and Bob " + bob + " points, with a difference of: " + y + " points");
+    //     }
+    // }
+    // a=[Math.floor(Math.random()*100),Math.floor(Math.random()*100),Math.floor(Math.random()*100)]
+    // b=[Math.floor(Math.random()*100),Math.floor(Math.random()*100),Math.floor(Math.random()*100)]
+    
+    // compare(a,b);
+
+    // console.log(test.slice(-3,6));
+    // console.log(test.replace('a wonderful','an amazing'));
+    // console.log(test.toLowerCase().replace('a wonderful','an amazing')); //replace 1
+    // console.log(test.split(" ")); // array of string
+    // console.log(test.charAt(1)); //a
+    // console.log(test.charCodeAt(1)); //97
+    // console.log(String.fromCharCode(65));
+    const upper = (str,newstr='')=>{
+        // for (let x of str){
+        //     let code=x.charCodeAt(0);
+        //     let sub=0;
+        //     if (code>96 && code<123){
+        //         sub=32
+        //     };
+        //  newstr+=String.fromCharCode(code-sub);
+        // }
+        for (let x in str){
+            if (str.charCodeAt(x)>96 && str.charCodeAt(x)<123){
+                newstr+=String.fromCharCode(str.charCodeAt(x)-32);
+            }else{
+                newstr+=String.fromCharCode(str.charCodeAt(x));
+            }
+        }
+        return newstr;
+    };
+    let str='Tamwood is a WONDERFULL wonderful college';
+    // console.log(upper(str));
+
+
+
+</script>
+</html>
