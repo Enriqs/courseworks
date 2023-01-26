@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session 3</title>
+    <!-- JOSE ENRIQUE JIMENEZ ROJAS -->
+</head>
+<body>
+    
+</body>
+<script>
+    const Len = (array) => {
+        let x=0;
+        while(true){
+            if(array[x]==null){
+                break;
+            }
+            x++;
+        }
+        return x;
+    }
+    let names=['Takumi','Jun','Nao'];
+    // ...names='takumi','jun'
+    // names.pop(); // eliminates last item, and returns the eliminated item
+    names.push("Miku"); // Adds element to array, and returns size of array
+
+    const mypush = (arr,...newarr)=>{
+        let x = Len (arr);
+        let y = Len (newarr);
+        let z=0;
+        for (let i= x; i<(x+y);i++){
+            arr[i]=newarr[z];
+            z++;
+        }
+        return Len(arr);
+    }
+
+    const Push = (srcArray,...newItem)=>{
+        for(let item of newItem){
+            srcArray[Len(srcArray)]=item;
+        }
+        return Len(srcArray);
+    }
+    const myshift = (arr) => {
+        let x= Len(arr);
+        let y='';
+        for (let i=0;i<x;i++){
+            if (arr[i+1]==null){
+                arr.pop();
+                break;
+            }
+            arr[i]=arr[i+1];
+        }
+        return arr;
+    }
+    const myunshift = (arr,...newarr) => {
+        let arrx=[...newarr,...arr];
+        for (let i in arrx){
+            arr[i]=arrx[i];
+        }
+        return Len(arr);
+    }
+
+
+        
+    const pshift=(srcArray)=>{
+        let tmpval=srcArray[0];
+        for (let idx in srcArray){
+            idx=parseInt(idx);
+            srcArray[idx]=srcArray[++idx]
+        }
+    }
+    console.log(names);
+    // console.log(mypush(names,"Enri","jose"));
+    // console.log(myshift(names));
+    // console.log(names);
+    // console.log("enri");
+    // Call by Value: in a function it makes a copy of value of variable and if its modified in function it doesnt modify the original value
+    // Call by Reference: Happens in array and object, the array can be modified in a function and the original array or object would be also modified
+    // Spread Operator => ...items: string[] it will open the array and add the items to a new array
+    // names.shift() removes first item from array
+    // names.unshift("newname"); Adds newname to array 
+
+    // names.splice(1,3,"Maria"); //start deleting from postion 1, 3 items from there forward, and from position 1 takes new values
+    // console.log(myunshift(names,"enri","jose"));
+    // console.log(names.unshift("jose","Enri"));
+    // console.log(names);
+    const counting = (arr)=>{
+        let max=0;
+        for (let i of arr){
+            if (i>max){
+                max=i;
+            }
+        };
+        let counter=0;
+        for (let i of arr){
+            if (i==max){
+                counter++;
+            }
+        };
+        console.log("The maximum age is "+max+" with repeating "+counter)
+    }
+        // a=[Math.floor(Math.random()*100),Math.floor(Math.random()*100),Math.floor(Math.random()*100)]
+    let y=1+Math.floor(Math.random()*100);
+    let x=[];
+    for (let i=0;i<y;i++){
+        x[i]=1+Math.floor(Math.random()*100);
+    }
+    // let x=[4,4,3,2]
+    counting(x);
+
+
+</script>
+</html>
