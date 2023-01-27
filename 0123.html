@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>My name is</h1>
+    <ul>
+
+    </ul>
+</body>
+<script>
+    let names = ["Nao","claire","jay","jun"];
+    // print the values of this array inside an unordered list.
+    let list = document.getElementsByTagName("ul")[0];
+    let idx=0;
+    // while(idx<names.length){
+    for(let idx=names.length-1; idx>=0; idx--){
+        // console.log(names[idx++]);
+        // list.innerHTML += `<li>${names[idx]}</li>`;
+        // list.innerHTML += "<li>" + names[idx] + "</li>";
+    };
+    
+    // for(let x in names){
+    //     console.log(x);
+    //     console.log(names[x]);
+    //     list.innerHTML += "<li>" + names[x] + "</li>";
+    // };
+    // for(let x of names){
+        // console.log(x);
+    //     list.innerHTML += `<li>${x}</li>`;
+    // };
+
+        const RandInt = (max, min) =>{
+            return Math.floor(Math.random() * (max-min) +1 ) + min;
+        }
+        // console.log(Math.floor(Math.random() * 100) +10 );
+        // console.log(RandInt(10,100));
+        console.log(Math.random() * 50 + 20) ;
+    // let title = document.getElementsByTagName("h1");
+    // console.log(document.getElementsByTagName("h1"));
+    // let titleH1 = document.getElementById("title");
+    // title[0].innerHTML += " <i>Jay</i>";
+    // console.log(titleH1.innerText);
+</script>
+</html>

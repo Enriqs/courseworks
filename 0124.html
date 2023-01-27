@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1></h1>
+    <h1></h1>
+</body>
+<script>
+    let test = "tamwood";
+    let str = "Tamwood is a WONDERFUL wonderful college";
+    let h1s = document.getElementsByTagName("h1");
+    let ans = [];
+    h1s[0].innerHTML = test;
+    // for(let ch of test) {
+    //     console.log(ch);
+    // }
+    for(let idx=test.length-1; idx>=0; idx--){
+        h1s[1].innerHTML += test[idx];
+    }
+    // console.log(test.slice(2,-2));
+    // console.log(str.toLowerCase().replaceAll("wonderful","amazing"));
+    // console.log(str.split(" "));
+    
+    // console.log(str.charCodeAt(1));
+    // console.log(String.fromCharCode(65));
+    // console.log(test.toUpperCase());
+
+    // for(let idx=0; idx<test.length; idx++){
+    //     let tmp = test.charCodeAt(idx);
+        // ans[idx] = String.fromCharCode(tmp-32);
+    // }
+
+    const upperCase = (str) =>{
+        let capString = "";
+        for(let ch of str){
+            let code = ch.charCodeAt(0);
+            let sub = 0;
+            if(97<ch && ch<122){
+                sub=32;
+            }
+            capString += String.fromCharCode(code-sub);
+        }
+        return capString;
+    }
+    
+
+</script>
+</html>

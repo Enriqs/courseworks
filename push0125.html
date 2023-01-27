@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // let arr = ['a', 'b', 'c'];
+    
+    // const pushArr = (newVal) =>{
+    //     arr[arr.length] = newVal;
+    // }
+
+    // console.log(pushArr('d'));
+    // console.log(arr);
+
+
+    // const xFunction = (x) => {
+    //     return x+x;
+    // }
+    // console.log(xFunction(5));
+
+
+    const Push = (srcArray,newItem) => {
+        for(let item of newItem) {
+            srcArray[srcArray.length] = item;
+        }
+        return names;
+    }
+    let names =['Taku', 'Kaku'];
+    newItems = ['Jose','Jay'];
+    console.log(Push(names, newItems));
+    // console.log(names.shift());
+    // names.unshift("Riku");
+    // console.log(names);
+    names.splice(2,-1);
+    console.log(names);
+
+    const copySplice = (num1, num2, ...newVal) =>{
+
+    }
+    ['Taku', 'A', 'B', 'C', 'Jay']
+    const Shift = (srcArray) => {
+        for (let idx in srcArray){
+            idx = parseInt(idx);
+            if(idx==srcArray.length-1){
+                srcArray.splice(idx,-1);
+                break;
+            }
+            srcArray[idx] = srcArray[idx+1];
+        }
+    }
+    console.log(Shift(names));
+    console.log(names);
+    
+    const Unshift = (srcArray,item) => {
+        let tmpArray = [srcArray.length];
+        for (let idx in srcArray){
+            tmpArray[idx+1] = srcArray[idx];
+        }
+        tmpArray[idx] = item;
+    }
+
+</script>
+</html>
