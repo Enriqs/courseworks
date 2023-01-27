@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" placeholder="write first name"/>
+    <h1>Hover me!</h1>
+    <button>Click</button>
+</body>
+<script>
+    let h1 = document.getElementsByTagName("h1")[0];
+    let btn = document.getElementsByTagName("button")[0];
+    const btnClick = (e) => {
+     console.log(e);   
+    };
+    const h1Hover = (e) => {
+        switch(e.type) {
+        case "mouseover": 
+            e.target.innerText = "it works!";
+            break;
+        case "mouseout": 
+            e.target.innerText = "Hover me!";
+            break;
+        }
+    }
+    const inputHandle = (e) => {
+        let code = e.key.toLowerCase().charCodeAt();
+        if(97>code || code>122 ){
+            if (code!=32 && code!=39){
+                e.preventDefault();
+            }
+        }
+        
+    }
+    document.getElementsByTagName("input")[0].addEventListener("keypress",inputHandle)
+    h1.addEventListener("mouseover",h1Hover);
+    h1.addEventListener("mouseout",h1Hover);
+    btn.addEventListener("click",btnClick);
+</script>
+</html>

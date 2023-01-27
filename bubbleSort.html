@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    array = [5,4,3,2,1];
+    let tmp = 0;
+    const bsort=(srcArray)=>{
+        for(let j=0; j<srcArray.length; j++){
+            for (let i=0; i<srcArray.length; i++){
+                if(srcArray[i]>srcArray[i+1]){
+                    tmp = srcArray[i+1];
+                    srcArray[i+1] = srcArray[i]; 
+                    srcArray[i] = tmp; 
+                }
+                // console.log(array);
+            }
+        }
+    }
+    console.log(bsort(array));
+    console.log(array);
+</script>
+</html>

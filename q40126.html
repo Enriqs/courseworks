@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    let arr = [1,4,6,3,7];
+    const check = (arr) => {
+        let max =0;
+        let min=10000;
+        let minsum=0;
+        let maxsum=0;
+        for (let i=0; i<5;i++){
+            if(arr[i] > max){
+                max = arr[i];
+            }
+        }
+        for (let i=0; i<5;i++){
+            if(arr[i] < min){
+                min = arr[i];
+            }
+        }
+        for (let i=0; i<5;i++){
+            if(arr[i] < max){
+                minsum += arr[i];
+            }
+        }
+        for (let i=0; i<5;i++){
+            if(arr[i] > min){
+                maxsum += arr[i];
+            }
+        }
+        console.log(minsum);
+        console.log(maxsum);
+    }
+    console.log(check(arr));
+</script>
+</html>
