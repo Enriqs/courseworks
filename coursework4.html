@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    let x=[];
+    for (let i=0;i<5;i++){
+        x[i]=1+Math.floor(Math.random()*100);
+    }
+    const cal =(arr)=>{
+        
+        let v=[...arr];
+        let y=[...arr];
+        v=v.sort();
+        y=y.sort().reverse();
+        console.log(y);
+        console.log(v);
+        let max=0;
+        let min=0;
+        for (let i=0 ;i<4;i++){
+            min+=v[i];
+            max+=y[i];
+        }
+        return [min,max]
+    }
+
+    console.log(cal(x));
+
+</script>
+</html>
