@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            border: 1px solid black;
+            background-color: tomato;
+            border-radius: 5px;
+            color: white;
+            font-size: x-large;
+            font-weight: bold;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            margin: 5px 0;
+        }
+        .box:hover{
+            cursor: pointer;
+            background-color: blue
+        }
+    </style>
+</head>
+<body>
+    <input type="text" placeholder="Product" id="product"></input>
+    <input type="text" placeholder="Price" id="price"></input>
+    <input type="text" placeholder="Quantity" id="qty"></input>
+    <button>Add</button>
+    <button>Delete</button>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Product Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr></tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Total: </td>
+                <td></td>
+            </tr>
+        </tfoot>
+    </table>
+</body>
+
+<script>
+    let selectedElement=null;
+    
+
+    const select = (e) =>{
+        let boxes = document.getElementsByClassName("box");
+        for(let box of boxes){
+            box.style.backgroundColor = "tomato";
+        }
+        if (selectedElement!=null && selectedElement.isSameNode(e.target)){
+            selectedElement=null;
+            let disable =document.createAttribute("disabled");
+            document.getElementsByTagName("button")[1].setAttribute("disabled",""); //With method
+            document.getElementsByTagName("button")[2].attributes.setNamedItem(disable); //With Attribute
+            // document.getElementsByTagName("button")[2].attributes.setNamedItem("disabled");
+        }else{
+            e.target.style.backgroundColor = "blue";
+            selectedElement=e.target;
+            document.getElementsByTagName("button")[1].attributes.removeNamedItem("disabled");
+            document.getElementsByTagName("button")[2].attributes.removeNamedItem("disabled");
+            document.getElementsByTagName("button")[3].attributes.removeNamedItem("disabled");
+        }
+    }
+
+    const arrowFunction = (e) =>{
+        switch(e.keyCode){
+            case 38:
+                moveUp();
+                break;
+            case 40:
+                moveDown();
+                break;
+        }
+    }
+    document.addEventListener("keydown",arrowFunction);
+
+    const addBox = () =>{
+        let box = document.createElement("div");
+        box.innerText = document.getElementById("bucket").childElementCount+1;
+        box.addEventListener("click",select);
+        box.classList.add("box");
+        document.getElementById("bucket").appendChild(box);
+    }
+    let x=0;
+    const addPro = () =>{
+        let product = document.getElementById("product").value;
+        let price = document.getElementById("price").value;
+        let qty = document.getElementById("qty").value;
+        parseFloat.price;
+        parseInt.qty;
+        // console.log(qty);
+        if (product!="" && price!="" && qty!="" && price>0 && qty>0){
+            let row = document.createElement("tr");
+            let r1= document.createElement("td");
+            let r2= document.createElement("td");
+            let r3= document.createElement("td");
+            let r4= document.createElement("td");
+            let r5= document.createElement("td");
+            row.appendChild(r1);
+            row.appendChild(r2);
+            row.appendChild(r3);
+            row.appendChild(r4);
+            row.appendChild(r5);
+            r1.innerText= x++;
+            r2.innerText=product;
+            r3.innerText=price;
+            r4.innerText=qty;
+            r5.innerText=price*qty;
+            // r1.innerText= document.row.5;
+            // console.log(r1);
+            // console.log(row);
+            document.getElementsByTagName("tbody")[0].appendChild(row);
+            // row.appendChild(r1)
+        }
+    }
+
+    document.getElementsByTagName("button")[0].addEventListener("click",addPro);
+    // document.getElementsByTagName("button")[1].addEventListener("click",moveUp);
+    // document.getElementsByTagName("button")[2].addEventListener("click",moveDown);
+    document.getElementsByTagName("button")[1].addEventListener("click",remove);
+    
+</script>
+
+</html>
