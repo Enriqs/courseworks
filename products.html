@@ -64,38 +64,39 @@
         for(let product of products){
             product.style.backgroundColor = "black";
         }
-        if (selectedElement!=null && selectedElement.isSameNode(e.target.parentNode)){
-            selectedElement=null;
-            document.getElementsByTagName("button")[0].innerText="Add";
-            document.getElementById("product").value="";
-            document.getElementById("price").value="";
-            document.getElementById("qty").value="";
+        if (e=="down"){
+            if(selectedElement.parentNode.lastElementChild.isSameNode(selectedElement)){
+                selectedElement.parentNode.firstElementChild.style.backgroundColor = "blue";
+                selectedElement=selectedElement.parentNode.firstElementChild;
+            }else{
+                selectedElement.nextElementSibling.style.backgroundColor = "blue";
+                selectedElement=selectedElement.nextElementSibling;
+            }
+        }else if(e=="up"){
+            if(selectedElement.parentNode.firstElementChild.isSameNode(selectedElement)){
+                selectedElement.parentNode.lastElementChild.style.backgroundColor = "blue";
+                selectedElement=selectedElement.parentNode.lastElementChild;
+            }else{
+                selectedElement.previousElementSibling.style.backgroundColor = "blue";
+                selectedElement=selectedElement.previousElementSibling;
+            }
         }else{
-            if (e=="down"){
-                if(selectedElement.parentNode.lastElementChild.isSameNode(selectedElement)){
-                    selectedElement.parentNode.firstElementChild.style.backgroundColor = "blue";
-                    selectedElement=selectedElement.parentNode.firstElementChild;
-                }else{
-                    selectedElement.nextElementSibling.style.backgroundColor = "blue";
-                    selectedElement=selectedElement.nextElementSibling;
-                }
-            }else if(e=="up"){
-                if(selectedElement.parentNode.firstElementChild.isSameNode(selectedElement)){
-                    selectedElement.parentNode.lastElementChild.style.backgroundColor = "blue";
-                    selectedElement=selectedElement.parentNode.lastElementChild;
-                }else{
-                    selectedElement.previousElementSibling.style.backgroundColor = "blue";
-                    selectedElement=selectedElement.previousElementSibling;
-                }
+            if (selectedElement!=null && selectedElement.isSameNode(e.target.parentNode)){
+                selectedElement=null;
+                document.getElementsByTagName("button")[0].innerText="Add";
+                document.getElementById("product").value="";
+                document.getElementById("price").value="";
+                document.getElementById("qty").value="";
+                return;
             }else{
                 e.target.parentNode.style.backgroundColor = "blue";
                 selectedElement=e.target.parentNode;
                 document.getElementsByTagName("button")[0].innerText="Edit";
             }
-            document.getElementById("product").value=selectedElement.children[1].innerText;
-            document.getElementById("price").value=selectedElement.children[2].innerText;
-            document.getElementById("qty").value=selectedElement.children[3].innerText;
         }
+        document.getElementById("product").value=selectedElement.children[1].innerText;
+        document.getElementById("price").value=selectedElement.children[2].innerText;
+        document.getElementById("qty").value=selectedElement.children[3].innerText;
     }
     //**************************************************** MOVE WITH KEYBOARD START
 
