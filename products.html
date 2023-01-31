@@ -205,6 +205,9 @@
             selectedElement.remove();
             selectedElement=null;
             document.getElementsByTagName("button")[0].innerText="Add";
+            document.getElementById("product").value="";
+            document.getElementById("price").value="";
+            document.getElementById("qty").value="";
             let collection=document.getElementsByClassName("products");
             let total=0;
             for (let i = 0; i < collection.length; i++) {
