@@ -59,13 +59,17 @@
     
     const select = (e) =>{
         let products = document.getElementsByClassName("products");
-        // console.log(e);
+        // console.log(e.target);
+        // console.log(selectedElement);
         for(let product of products){
             product.style.backgroundColor = "black";
         }
-        if (selectedElement!=null && selectedElement.isSameNode(e.target)){
+        if (selectedElement!=null && selectedElement.isSameNode(e.target.parentNode)){
             selectedElement=null;
             document.getElementsByTagName("button")[0].innerText="Add";
+            document.getElementById("product").value="";
+            document.getElementById("price").value="";
+            document.getElementById("qty").value="";
         }else{
             if (e=="down"){
                 if(selectedElement.parentNode.lastElementChild.isSameNode(selectedElement)){
