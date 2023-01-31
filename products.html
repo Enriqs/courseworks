@@ -30,7 +30,7 @@
     <input type="text" placeholder="Price" id="price"></input>
     <input type="text" placeholder="Quantity" id="qty"></input>
     <button>Add</button>
-    <button>Delete</button>
+    <button disabled>Delete</button>
     <br>
     <br>
     <table border="1">
@@ -84,6 +84,7 @@
             if (selectedElement!=null && selectedElement.isSameNode(e.target.parentNode)){
                 selectedElement=null;
                 document.getElementsByTagName("button")[0].innerText="Add";
+                document.getElementsByTagName("button")[1].setAttribute("disabled","");
                 document.getElementById("product").value="";
                 document.getElementById("price").value="";
                 document.getElementById("qty").value="";
@@ -92,6 +93,7 @@
                 e.target.parentNode.style.backgroundColor = "blue";
                 selectedElement=e.target.parentNode;
                 document.getElementsByTagName("button")[0].innerText="Edit";
+                document.getElementsByTagName("button")[1].attributes.removeNamedItem("disabled");
             }
         }
         document.getElementById("product").value=selectedElement.children[1].innerText;
@@ -101,25 +103,61 @@
     //**************************************************** MOVE WITH KEYBOARD START
 
     const arrowFunction = (e) =>{
+        // console.log(e.keyCode);
         switch(e.keyCode){
-            case 38:
+            case 38: //up arrow moves element up
                 moveUp();
                 break;
-            case 40:
+            case 40: //down arrow moves element down
                 moveDown();
+                break;
+            case 46: //supr or del key deletes element
+                del();
+                break;
+            case 37: // left arrow surf up without moving element
+                goUp();
+                break;
+            case 39: // right arrow surf down without moving element
+                goDown();
                 break;
         }
     }
     document.addEventListener("keydown",arrowFunction);
-    const moveUp=()=>{
+    const goUp=()=>{
         if(selectedElement!=null){
             select("up");
         }
     }
 
-    const moveDown=()=>{
+    const goDown=()=>{
         if(selectedElement!=null){
             select("down");
+        }
+    }
+
+    const del =()=>{
+        if(selectedElement!=null){
+            remove();
+        }
+    }
+
+    const moveUp=()=>{
+        if(selectedElement!=null){
+            if(selectedElement.parentNode.firstElementChild.isSameNode(selectedElement)){
+                selectedElement.parentNode.lastElementChild.after(selectedElement);
+            }else{
+                selectedElement.previousElementSibling.before(selectedElement);
+            }
+        }
+    }
+
+    const moveDown=()=>{
+        if(selectedElement!=null){
+            if(selectedElement.parentNode.lastElementChild.isSameNode(selectedElement)){
+                selectedElement.parentNode.firstElementChild.before(selectedElement);
+            }else{
+                selectedElement.nextElementSibling.after(selectedElement);
+            }
         }
     }
 
@@ -218,6 +256,7 @@
 
             // console.log(document.getElementsByTagName("tbody")[0].appendChild(row);)
             document.getElementById("total").innerText= "$ "+total.toFixed(2);
+            document.getElementsByTagName("button")[1].setAttribute("disabled","");
         }
     }
 
