@@ -6,21 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .box{
+        .products{
             border: 1px solid black;
-            background-color: tomato;
+            background-color: black;
             border-radius: 5px;
             color: white;
-            font-size: x-large;
-            font-weight: bold;
-            align-items: center;
             width: 40px;
             height: 40px;
             margin: 5px 0;
+            text-align: center;
         }
-        .box:hover{
+        .products:hover{
             cursor: pointer;
             background-color: blue
+        }
+        tfoot td{
+            text-align: end;
         }
     </style>
 </head>
@@ -30,6 +31,8 @@
     <input type="text" placeholder="Quantity" id="qty"></input>
     <button>Add</button>
     <button>Delete</button>
+    <br>
+    <br>
     <table border="1">
         <thead>
             <tr>
@@ -41,15 +44,11 @@
             </tr>
         </thead>
         <tbody>
-            <tr></tr>
         </tbody>
         <tfoot>
             <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>Total: </td>
-                <td></td>
+                <td colspan="4">Total: </td>
+                <td id="total">$ 0.00</td>
             </tr>
         </tfoot>
     </table>
@@ -58,26 +57,43 @@
 <script>
     let selectedElement=null;
     
-
     const select = (e) =>{
-        let boxes = document.getElementsByClassName("box");
-        for(let box of boxes){
-            box.style.backgroundColor = "tomato";
+        let products = document.getElementsByClassName("products");
+        // console.log(e);
+        for(let product of products){
+            product.style.backgroundColor = "black";
         }
         if (selectedElement!=null && selectedElement.isSameNode(e.target)){
             selectedElement=null;
-            let disable =document.createAttribute("disabled");
-            document.getElementsByTagName("button")[1].setAttribute("disabled",""); //With method
-            document.getElementsByTagName("button")[2].attributes.setNamedItem(disable); //With Attribute
-            // document.getElementsByTagName("button")[2].attributes.setNamedItem("disabled");
+            document.getElementsByTagName("button")[0].innerText="Add";
         }else{
-            e.target.style.backgroundColor = "blue";
-            selectedElement=e.target;
-            document.getElementsByTagName("button")[1].attributes.removeNamedItem("disabled");
-            document.getElementsByTagName("button")[2].attributes.removeNamedItem("disabled");
-            document.getElementsByTagName("button")[3].attributes.removeNamedItem("disabled");
+            if (e=="down"){
+                if(selectedElement.parentNode.lastElementChild.isSameNode(selectedElement)){
+                    selectedElement.parentNode.firstElementChild.style.backgroundColor = "blue";
+                    selectedElement=selectedElement.parentNode.firstElementChild;
+                }else{
+                    selectedElement.nextElementSibling.style.backgroundColor = "blue";
+                    selectedElement=selectedElement.nextElementSibling;
+                }
+            }else if(e=="up"){
+                if(selectedElement.parentNode.firstElementChild.isSameNode(selectedElement)){
+                    selectedElement.parentNode.lastElementChild.style.backgroundColor = "blue";
+                    selectedElement=selectedElement.parentNode.lastElementChild;
+                }else{
+                    selectedElement.previousElementSibling.style.backgroundColor = "blue";
+                    selectedElement=selectedElement.previousElementSibling;
+                }
+            }else{
+                e.target.parentNode.style.backgroundColor = "blue";
+                selectedElement=e.target.parentNode;
+                document.getElementsByTagName("button")[0].innerText="Edit";
+            }
+            document.getElementById("product").value=selectedElement.children[1].innerText;
+            document.getElementById("price").value=selectedElement.children[2].innerText;
+            document.getElementById("qty").value=selectedElement.children[3].innerText;
         }
     }
+    //**************************************************** MOVE WITH KEYBOARD START
 
     const arrowFunction = (e) =>{
         switch(e.keyCode){
@@ -90,51 +106,117 @@
         }
     }
     document.addEventListener("keydown",arrowFunction);
-
-    const addBox = () =>{
-        let box = document.createElement("div");
-        box.innerText = document.getElementById("bucket").childElementCount+1;
-        box.addEventListener("click",select);
-        box.classList.add("box");
-        document.getElementById("bucket").appendChild(box);
+    const moveUp=()=>{
+        if(selectedElement!=null){
+            select("up");
+        }
     }
+
+    const moveDown=()=>{
+        if(selectedElement!=null){
+            select("down");
+        }
+    }
+
+    //*************************************************** MOVE WITH KEYBOARD END
+
+
     let x=0;
     const addPro = () =>{
-        let product = document.getElementById("product").value;
-        let price = document.getElementById("price").value;
-        let qty = document.getElementById("qty").value;
-        parseFloat.price;
-        parseInt.qty;
-        // console.log(qty);
-        if (product!="" && price!="" && qty!="" && price>0 && qty>0){
-            let row = document.createElement("tr");
-            let r1= document.createElement("td");
-            let r2= document.createElement("td");
-            let r3= document.createElement("td");
-            let r4= document.createElement("td");
-            let r5= document.createElement("td");
-            row.appendChild(r1);
-            row.appendChild(r2);
-            row.appendChild(r3);
-            row.appendChild(r4);
-            row.appendChild(r5);
-            r1.innerText= x++;
-            r2.innerText=product;
-            r3.innerText=price;
-            r4.innerText=qty;
-            r5.innerText=price*qty;
-            // r1.innerText= document.row.5;
-            // console.log(r1);
-            // console.log(row);
-            document.getElementsByTagName("tbody")[0].appendChild(row);
-            // row.appendChild(r1)
+        if (selectedElement==null){
+            let product = document.getElementById("product").value;
+            let price = document.getElementById("price").value;
+            let qty = document.getElementById("qty").value;
+            parseFloat(price).toFixed(2);
+            parseInt.qty;
+            // console.log(qty);
+            if (product!="" && price!="" && qty!="" && price>0 && qty>0){
+                let row = document.createElement("tr");
+                let r1= document.createElement("td");
+                let r2= document.createElement("td");
+                let r3= document.createElement("td");
+                let r4= document.createElement("td");
+                let r5= document.createElement("td");
+                row.appendChild(r1);
+                row.appendChild(r2);
+                row.appendChild(r3);
+                row.appendChild(r4);
+                row.appendChild(r5);
+                r1.innerText= x++;
+                r2.innerText=product;
+                r3.innerText=price;
+                r4.innerText=qty;
+                r5.innerText=(price*qty).toFixed(2);
+                // r1.innerText= document.row.5;
+                // console.log(r1);
+                // console.log(row);
+                row.addEventListener("click",select);
+                row.classList.add("products");
+                document.getElementsByTagName("tbody")[0].appendChild(row);
+                let collection=document.getElementsByClassName("products");
+                let total=0;
+                for (let i = 0; i < collection.length; i++) {
+                    // console.log(collection[i].lastElementChild.innerText);
+                    total=total+parseFloat(collection[i].lastElementChild.innerText);
+                }
+    
+                // console.log(document.getElementsByTagName("tbody")[0].appendChild(row);)
+                document.getElementById("total").innerText= "$ "+total.toFixed(2);
+            }
+        }
+    }
+
+    const edit = () =>{
+        if(selectedElement!=null){
+            let product = document.getElementById("product").value;
+            let price = document.getElementById("price").value;
+            let qty = document.getElementById("qty").value;
+            parseFloat(price).toFixed(2);
+            parseInt.qty;
+            // console.log(qty);
+            if (product!="" && price!="" && qty!="" && price>0 && qty>0){
+                selectedElement.children[1].innerText=product;
+                selectedElement.children[2].innerText=price;
+                selectedElement.children[3].innerText=qty;
+                selectedElement.children[4].innerText=(price*qty).toFixed(2);
+                let collection=document.getElementsByClassName("products");
+                let total=0;
+                for (let i = 0; i < collection.length; i++) {
+                    // console.log(collection[i].lastElementChild.innerText);
+                    total=total+parseFloat(collection[i].lastElementChild.innerText);
+                }
+    
+                // console.log(document.getElementsByTagName("tbody")[0].appendChild(row);)
+                document.getElementById("total").innerText= "$ "+total.toFixed(2);
+            }
+        }
+    }
+
+    const ltotal = () =>{
+
+    }
+
+    const remove = () =>{
+        if (selectedElement!=null){
+            selectedElement.remove();
+            selectedElement=null;
+            document.getElementsByTagName("button")[0].innerText="Add";
+            let collection=document.getElementsByClassName("products");
+            let total=0;
+            for (let i = 0; i < collection.length; i++) {
+                // console.log(collection[i].lastElementChild.innerText);
+                total=total+parseFloat(collection[i].lastElementChild.innerText);
+            }
+
+            // console.log(document.getElementsByTagName("tbody")[0].appendChild(row);)
+            document.getElementById("total").innerText= "$ "+total.toFixed(2);
         }
     }
 
     document.getElementsByTagName("button")[0].addEventListener("click",addPro);
-    // document.getElementsByTagName("button")[1].addEventListener("click",moveUp);
-    // document.getElementsByTagName("button")[2].addEventListener("click",moveDown);
+    document.getElementsByTagName("button")[0].addEventListener("click",edit);
     document.getElementsByTagName("button")[1].addEventListener("click",remove);
+    // document.getElementsByTagName("button")[1].addEventListener("click",remove);
     
 </script>
 
